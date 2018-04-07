@@ -24,7 +24,19 @@ public class PlayerController : MonoBehaviour {
             rigid.velocity = new Vector2(lateralTopSpeed, vel.y);
         if (vel.x < -lateralTopSpeed)
             rigid.velocity = new Vector2(-lateralTopSpeed, vel.y);
+        vel = rigid.velocity;
+        if (vel.y > terminalVelocity)
+            rigid.velocity = new Vector2(vel.x, terminalVelocity);
+        if (vel.y < -terminalVelocity)
+            rigid.velocity = new Vector2(vel.x, -terminalVelocity);
 
         rigid.AddForce(new Vector2(Input.GetAxis("Horizontal")*lateralAcceleration, 0), ForceMode2D.Impulse);
+
+        if (Input.GetButtonUp("Jump"))
+            Jump();
+    }
+
+    void Jump() {
+        rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
     }
 }
