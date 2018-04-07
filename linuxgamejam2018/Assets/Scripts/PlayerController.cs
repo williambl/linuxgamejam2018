@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    float fallAcceleration = 9.81f;
     float terminalVelocity = 5;
     float lateralAcceleration = 5;
     float lateralTopSpeed = 5;
-    float jumpAcceleration = 10;
+    float jumpAcceleration = 25;
 
     Rigidbody2D rigid;
+    bool canJump;
 
     // Use this for initialization
     void Start () {
@@ -37,6 +37,18 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Jump() {
-        rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
+        if (canJump)
+            rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
+    }
+
+    void OnCollisionEnter2D (Collision2D collision) 
+    {
+        canJump = true;
+        Debug.Log("ayy");
+    }
+      
+    void OnCollisionExit2D (Collision2D collision) 
+    {
+        canJump = false;
     }
 }
