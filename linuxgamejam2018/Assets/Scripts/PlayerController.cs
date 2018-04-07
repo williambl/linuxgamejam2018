@@ -11,10 +11,16 @@ public class PlayerController : MonoBehaviour {
 
     Rigidbody2D rigid;
     bool canJump;
+    Vector2 groundOffset;
+    bool isTouchingGround;
+
+    GameObject runParticles;
 
     // Use this for initialization
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
+        runParticles = transform.Find("runParticles").gameObject;
+        groundOffset = new Vector2(0, GetComponent<Collider2D>().bounds.extents.y+0.1f);
     }
 	
     // Update is called once per frame
@@ -41,6 +47,10 @@ public class PlayerController : MonoBehaviour {
         //Jump
         if (Input.GetButtonDown("Jump"))
             Jump();
+
+        isTouchingGround = Physics2D.Raycast((Vector2)transform.position-groundOffset, -Vector2.up, 0.1f);
+
+        runParticles.SetActive((isTouchingGround && Mathf.Abs(vel.x)+0.5 > lateralTopSpeed));
     }
 
     void Jump() {
