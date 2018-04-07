@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour {
 	
     // Update is called once per frame
     void FixedUpdate () {
+        //Apply our top speeds
         Vector2 vel = rigid.velocity;
         if (vel.x > lateralTopSpeed)
             rigid.velocity = new Vector2(lateralTopSpeed, vel.y);
@@ -30,16 +31,20 @@ public class PlayerController : MonoBehaviour {
         if (vel.y < -terminalVelocity)
             rigid.velocity = new Vector2(vel.x, -terminalVelocity);
 
+        //Apply some friction
         if (Input.GetAxis("Horizontal") == 0 && canJump)
             rigid.velocity = new Vector2(vel.x*0.9f, vel.y);
 
+        //Do movement
         rigid.AddForce(new Vector2(Input.GetAxis("Horizontal")*lateralAcceleration, 0), ForceMode2D.Impulse);
 
+        //Jump
         if (Input.GetButtonDown("Jump"))
             Jump();
     }
 
     void Jump() {
+        //Only jump if we're on a surface
         if (canJump) {
             rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
             canJump = false;
