@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour {
         //Jump
         if (Input.GetButtonDown("Jump"))
             Jump();
+        if (Input.GetButtonDown("Fire1"))
+            Attack();
 
         isTouchingGround = Physics2D.Raycast((Vector2)transform.position-groundOffset, -Vector2.up, 0.1f);
 
@@ -68,6 +70,15 @@ public class PlayerController : MonoBehaviour {
     {
         burstParticles.GetComponent<ParticleSystem>().Play();
         canJump = true;
+    }
+
+    void Attack() {
+        Debug.Log("attack");
+        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 1.45f);
+        foreach (Collider2D coll in colls) {
+            if (coll.tag == "Enemy")
+                Destroy(coll.gameObject);
+        }
     }
       
 }
