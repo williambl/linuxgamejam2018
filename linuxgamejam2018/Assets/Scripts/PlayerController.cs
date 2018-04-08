@@ -15,11 +15,13 @@ public class PlayerController : MonoBehaviour {
     bool isTouchingGround;
 
     GameObject runParticles;
+    GameObject burstParticles;
 
     // Use this for initialization
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
         runParticles = transform.Find("runParticles").gameObject;
+        burstParticles = transform.Find("burstParticles").gameObject;
         groundOffset = new Vector2(0, GetComponent<Collider2D>().bounds.extents.y+0.1f);
     }
 	
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour {
         //Only jump if we're on a surface
         if (canJump) {
             rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
+            burstParticles.GetComponent<ParticleSystem>().Play();
             canJump = false;
         }
     }
