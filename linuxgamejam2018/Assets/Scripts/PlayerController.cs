@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     GameObject runParticles;
     GameObject burstParticles;
 
+    EnumPlayerState state;
+
     // Use this for initialization
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
@@ -54,6 +56,15 @@ public class PlayerController : MonoBehaviour {
 
         isTouchingGround = Physics2D.Raycast((Vector2)transform.position-groundOffset, -Vector2.up, 0.1f);
 
+        if (Mathf.Abs(vel.x) == lateralTopSpeed)
+            state = EnumPlayerState.RUNNING;
+        else
+            state = EnumPlayerState.WALKING;
+
+        if (!isTouchingGround)
+            state = EnumPlayerState.FLYING;
+
+        Debug.Log(state);
         runParticles.SetActive((isTouchingGround && Mathf.Abs(vel.x)+0.5 > lateralTopSpeed));
     }
 
@@ -74,10 +85,47 @@ public class PlayerController : MonoBehaviour {
 
     void Attack() {
         Debug.Log("attack");
-        Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 1.45f);
-        foreach (Collider2D coll in colls) {
-            if (coll.tag == "Enemy")
-                coll.GetComponent<EnemyHealth>().RemoveHealth();
+        Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
+        Vector2 pos2 = new Vector2(pos.x, pos.y);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(pos2, 2f);
+
+        switch (state) {
+            case EnumPlayerState.WALKING:
+                foreach (Collider2D coll in colls) {
+                    Debug.Log(coll.name);
+                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
+                    if (Vector2.Distance(transform.position, coll.transform.position) < 1.5f) {
+                        if (coll.tag == "Enemy")
+                            coll.GetComponent<EnemyHealth>().RemoveHealth();
+                    }
+                }
+                break;
+
+            case EnumPlayerState.RUNNING:
+                foreach (Collider2D coll in colls) {
+                    Debug.Log(coll.name);
+                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
+                    if (Vector2.Distance(transform.position, coll.transform.position) < 5f) {
+                        if (coll.tag == "Enemy") {
+                            coll.GetComponent<EnemyHealth>().RemoveHealth();
+                            rigid.AddForce((coll.transform.position-transform.position)*5);
+                        }
+                    }
+                }
+                break;
+            case EnumPlayerState.FLYING:
+                foreach (Collider2D coll in colls) {
+                    Debug.Log(coll.name);
+                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
+                    if (Vector2.Distance(transform.position, coll.transform.position) < 5f) {
+                        if (coll.tag == "Enemy") {
+                            coll.GetComponent<EnemyHealth>().RemoveHealth();
+                            rigid.AddForce((coll.transform.position-transform.position).normalized*10);
+                        }
+                    }
+                }
+                break;
+
         }
     }
       
