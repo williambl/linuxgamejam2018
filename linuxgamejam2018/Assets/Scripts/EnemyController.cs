@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour {
 
     float terminalVelocity = 6;
     float lateralAcceleration = 5;
-    float lateralTopSpeed = 5;
+    float lateralTopSpeed = 1;
 
     Rigidbody2D rigid;
     Vector2 edgeOffset;
