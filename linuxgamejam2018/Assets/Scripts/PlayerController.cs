@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter2D (Collision2D collision) 
     {
+        burstParticles.GetComponent<ParticleSystem>().Play();
         canJump = true;
     }
       
