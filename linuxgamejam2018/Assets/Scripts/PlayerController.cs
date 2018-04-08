@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour {
         Collider2D[] colls = Physics2D.OverlapCircleAll(transform.position, 1.45f);
         foreach (Collider2D coll in colls) {
             if (coll.tag == "Enemy")
-                Destroy(coll.gameObject);
+                coll.GetComponent<EnemyHealth>().RemoveHealth();
         }
     }
       
