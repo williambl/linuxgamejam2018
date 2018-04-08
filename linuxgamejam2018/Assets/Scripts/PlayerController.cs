@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
     GameObject burstParticles;
 
     EnumPlayerState state;
+    public float range;
 
     // Use this for initialization
     void Start () {
@@ -64,6 +65,18 @@ public class PlayerController : MonoBehaviour {
         if (!isTouchingGround)
             state = EnumPlayerState.FLYING;
 
+        switch (state) {
+            case EnumPlayerState.WALKING:
+                range = 1.5f;
+                break;
+            case EnumPlayerState.RUNNING:
+                range = 5f;
+                break;
+            case EnumPlayerState.FLYING:
+                range = 5f;
+                break;
+        }
+        
         Debug.Log(state);
         runParticles.SetActive((isTouchingGround && Mathf.Abs(vel.x)+0.5 > lateralTopSpeed));
     }
@@ -94,7 +107,7 @@ public class PlayerController : MonoBehaviour {
                 foreach (Collider2D coll in colls) {
                     Debug.Log(coll.name);
                     Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
-                    if (Vector2.Distance(transform.position, coll.transform.position) < 1.5f) {
+                    if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy")
                             coll.GetComponent<EnemyHealth>().RemoveHealth();
                     }
@@ -105,7 +118,7 @@ public class PlayerController : MonoBehaviour {
                 foreach (Collider2D coll in colls) {
                     Debug.Log(coll.name);
                     Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
-                    if (Vector2.Distance(transform.position, coll.transform.position) < 5f) {
+                    if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth();
                             rigid.AddForce((coll.transform.position-transform.position)*5);
@@ -117,7 +130,7 @@ public class PlayerController : MonoBehaviour {
                 foreach (Collider2D coll in colls) {
                     Debug.Log(coll.name);
                     Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
-                    if (Vector2.Distance(transform.position, coll.transform.position) < 5f) {
+                    if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth();
                             rigid.AddForce((coll.transform.position-transform.position).normalized*10);
