@@ -33,5 +33,17 @@ public class EnemyHealth : MonoBehaviour {
         health--;
         GameObject spawnedIndicator = Instantiate(damageIndicator);
         spawnedIndicator.transform.position = transform.position;
+        StartCoroutine(DamageEffects());
+    }
+
+    IEnumerator DamageEffects() {
+        Material mat = rend.material;
+        Color color = mat.color;
+        mat.color = Color.white;
+        rend.material = mat;
+        yield return new WaitForSeconds(0.1f);
+        mat = rend.material;
+        mat.color = color;
+        yield break;
     }
 }
