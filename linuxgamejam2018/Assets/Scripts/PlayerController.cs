@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour {
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth();
-                            rigid.AddForce((coll.transform.position-transform.position)*5);
+                            rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
                         }
                     }
                 }
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour {
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth();
-                            rigid.AddForce((coll.transform.position-transform.position).normalized*10);
+                            rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
                         }
                     }
                 }
