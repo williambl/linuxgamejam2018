@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour {
 
-    public int health = 5;
+    public int health;
+    public int maxHealth = 5;
+
+    public SpriteRenderer rend;
 
     // Use this for initialization
     void Start () {
-		
+        health = maxHealth;
+        rend = GetComponent<SpriteRenderer>();
     }
 	
     // Update is called once per frame
     void Update () {
+        Material mat = rend.material;
+        Color color = mat.color;
+        color.a = ((float)health/(float)maxHealth);
+        mat.color = color;
+        rend.material = mat;
+
         if (health == 0)
-            Destroy(gameObject);        
+            Destroy(gameObject);
     }
 
     public void RemoveHealth () {
