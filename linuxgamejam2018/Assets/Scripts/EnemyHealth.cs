@@ -9,6 +9,8 @@ public class EnemyHealth : MonoBehaviour {
 
     public SpriteRenderer rend;
 
+    public GameObject damageIndicator;
+
     // Use this for initialization
     void Start () {
         health = maxHealth;
@@ -29,5 +31,7 @@ public class EnemyHealth : MonoBehaviour {
 
     public void RemoveHealth () {
         health--;
+        GameObject spawnedIndicator = Instantiate(damageIndicator);
+        spawnedIndicator.transform.position = transform.position;
     }
 }

@@ -437,6 +437,8 @@ MonoBehaviour:
   health: 2
   maxHealth: 2
   rend: {fileID: 0}
+  damageIndicator: {fileID: 1481182029251704, guid: f541b52c269664f40a3d68bd826ad991,
+    type: 2}
 --- !u!1 &191063843
 GameObject:
   m_ObjectHideFlags: 0
@@ -623,7 +625,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1799653541
+  randomSeed: -1023814598
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7459,6 +7461,8 @@ MonoBehaviour:
   health: 2
   maxHealth: 2
   rend: {fileID: 0}
+  damageIndicator: {fileID: 1481182029251704, guid: f541b52c269664f40a3d68bd826ad991,
+    type: 2}
 --- !u!1 &838606921
 GameObject:
   m_ObjectHideFlags: 0
@@ -8017,6 +8021,8 @@ MonoBehaviour:
   health: 2
   maxHealth: 2
   rend: {fileID: 0}
+  damageIndicator: {fileID: 1481182029251704, guid: f541b52c269664f40a3d68bd826ad991,
+    type: 2}
 --- !u!1 &1319658314
 GameObject:
   m_ObjectHideFlags: 0
