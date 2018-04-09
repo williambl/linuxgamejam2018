@@ -6,7 +6,7 @@ public class CameraShake : MonoBehaviour {
 
     //Based on https://forum.unity.com/threads/screen-shake-effect.22886/#post-153233
     Camera cam;
-    float shakiness = 0f;
+    public float shakiness = 0f;
     float overallShakiness = 0.4f;
     float shakeDecrease = 3.0f;
     Vector3 originalCameraPos;

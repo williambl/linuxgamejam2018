@@ -34,6 +34,7 @@ public class EnemyHealth : MonoBehaviour {
         GameObject spawnedIndicator = Instantiate(damageIndicator);
         spawnedIndicator.transform.position = transform.position;
         StartCoroutine(DamageEffects());
+        Camera.main.GetComponent<CameraShake>().shakiness = 1.0f;
     }
 
     IEnumerator DamageEffects() {
