@@ -25,16 +25,21 @@ public class EnemyHealth : MonoBehaviour {
         mat.color = color;
         rend.material = mat;
 
-        if (health == 0)
+        if (health <= 0)
             Destroy(gameObject);
     }
 
-    public void RemoveHealth () {
-        health--;
-        GameObject spawnedIndicator = Instantiate(damageIndicator);
-        spawnedIndicator.transform.position = transform.position;
+    public void RemoveHealth (int toRemove) {
+        health -= toRemove;
+        if (health < 0)
+            toRemove -= Mathf.Abs(health);
+
+        for (int i = 0; i<toRemove; i++){
+            GameObject spawnedIndicator = Instantiate(damageIndicator);
+            spawnedIndicator.transform.position = (Vector2)transform.position+Random.insideUnitCircle*2;
+        }
         StartCoroutine(DamageEffects());
-        Camera.main.GetComponent<CameraShake>().shakiness = 1.0f;
+        Camera.main.GetComponent<CameraShake>().shakiness = (float)toRemove;
     }
 
     IEnumerator DamageEffects() {
