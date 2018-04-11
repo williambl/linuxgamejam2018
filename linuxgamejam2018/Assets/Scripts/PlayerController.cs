@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
         
-        Debug.Log(state);
         runParticles.SetActive((isTouchingGround && Mathf.Abs(vel.x)+0.5 > lateralTopSpeed));
     }
 
@@ -97,7 +96,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void Attack() {
-        Debug.Log("attack");
         Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         Vector2 pos2 = new Vector2(pos.x, pos.y);
         Collider2D[] colls = Physics2D.OverlapCircleAll(pos2, 3.5f);
@@ -105,8 +103,6 @@ public class PlayerController : MonoBehaviour {
         switch (state) {
             case EnumPlayerState.WALKING:
                 foreach (Collider2D coll in colls) {
-                    Debug.Log(coll.name);
-                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy")
                             coll.GetComponent<EnemyHealth>().RemoveHealth(1);
@@ -116,8 +112,6 @@ public class PlayerController : MonoBehaviour {
 
             case EnumPlayerState.RUNNING:
                 foreach (Collider2D coll in colls) {
-                    Debug.Log(coll.name);
-                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth(1);
@@ -128,8 +122,6 @@ public class PlayerController : MonoBehaviour {
                 break;
             case EnumPlayerState.FLYING:
                 foreach (Collider2D coll in colls) {
-                    Debug.Log(coll.name);
-                    Debug.Log(Vector2.Distance(transform.position, coll.transform.position));
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth(2);
