@@ -10,4 +10,5 @@ Temp
 *.userprefs
 *.app
 bin/*
-
+linuxgamejam2018/Assets/ProCore/*
+linuxgamejam2018/Assets/ProCore.meta
