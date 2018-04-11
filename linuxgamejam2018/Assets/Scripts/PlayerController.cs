@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
         Debug.Log("attack");
         Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
         Vector2 pos2 = new Vector2(pos.x, pos.y);
-        Collider2D[] colls = Physics2D.OverlapCircleAll(pos2, 2f);
+        Collider2D[] colls = Physics2D.OverlapCircleAll(pos2, 3.5f);
 
         switch (state) {
             case EnumPlayerState.WALKING:
