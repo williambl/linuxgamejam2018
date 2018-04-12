@@ -109,6 +109,8 @@ public class PlayerController : MonoBehaviour {
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy")
                             coll.GetComponent<EnemyHealth>().RemoveHealth(1);
+                        if (coll.tag == "Boss")
+                            coll.GetComponent<BossHealth>().RemoveHealth(1);
                     }
                 }
                 break;
@@ -119,6 +121,9 @@ public class PlayerController : MonoBehaviour {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth(1);
                             rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
+                        } else if (coll.tag == "Boss") {
+                            coll.GetComponent<BossHealth>().RemoveHealth(1);
+                            rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
                         }
                     }
                 }
@@ -128,6 +133,9 @@ public class PlayerController : MonoBehaviour {
                     if (Vector2.Distance(transform.position, coll.transform.position) < range) {
                         if (coll.tag == "Enemy") {
                             coll.GetComponent<EnemyHealth>().RemoveHealth(2);
+                            rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
+                        } else if (coll.tag == "Boss") {
+                            coll.GetComponent<BossHealth>().RemoveHealth(2);
                             rigid.AddForce((Vector2)(coll.transform.position - transform.position).normalized * 50, ForceMode2D.Impulse);
                         }
                     }

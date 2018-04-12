@@ -12920,7 +12920,7 @@ GameObject:
   - component: {fileID: 721700935}
   m_Layer: 0
   m_Name: Boss
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12941,7 +12941,8 @@ MonoBehaviour:
   rend: {fileID: 0}
   damageIndicator: {fileID: 1719967651001628, guid: 642334dfaee864006833da93108f07f3,
     type: 2}
-  deathIndicator: {fileID: 0}
+  deathIndicator: {fileID: 1208422020673140, guid: 527b1afc09ff94e6fa014230378560be,
+    type: 2}
 --- !u!114 &721700936
 MonoBehaviour:
   m_ObjectHideFlags: 0
