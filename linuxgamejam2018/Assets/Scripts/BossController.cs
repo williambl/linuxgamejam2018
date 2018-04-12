@@ -17,15 +17,22 @@ public class BossController : MonoBehaviour {
     //True = right, False = left
     bool direction;
 
+    BossHealth health;
+
     // Use this for initialization
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
         direction = Random.value > 0.5;
         edgeOffset = new Vector2(GetComponent<Collider2D>().bounds.extents.x+0.1f, -1f);
+        health = GetComponent<BossHealth>();
     }
 	
     // Update is called once per frame
     void FixedUpdate () {
+
+        if (health.health <= 0) {
+            return;
+        }
         //Apply our top speeds
         Vector2 vel = rigid.velocity;
         if (vel.x > lateralTopSpeed)
