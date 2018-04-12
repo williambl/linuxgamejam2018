@@ -12,6 +12,7 @@ public class PlayerHealth : Health {
     public GameObject damageIndicator;
     public GameObject deathCanvas;
     public Image healthBar;
+    public Gradient healthGradient;
     
     PlayerController pc;
 
@@ -36,6 +37,7 @@ public class PlayerHealth : Health {
         }
 
         healthBar.rectTransform.sizeDelta = new Vector2(40, 100f*health/maxHealth);
+        healthBar.color = healthGradient.Evaluate((float)health/maxHealth);
     }
 
     void OnCollisionEnter2D (Collision2D collision) {
