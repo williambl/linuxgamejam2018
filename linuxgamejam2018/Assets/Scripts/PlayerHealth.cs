@@ -9,11 +9,15 @@ public class PlayerHealth : Health {
     public SpriteRenderer rend;
 
     public GameObject damageIndicator;
+    public GameObject deathCanvas;
+    
+    PlayerController pc;
 
     // Use this for initialization
     void Start () {
         health = maxHealth;
         rend = GetComponent<SpriteRenderer>();
+        pc = GetComponent<PlayerController>();
     }
 	
     // Update is called once per frame
@@ -24,8 +28,10 @@ public class PlayerHealth : Health {
         mat.color = color;
         rend.material = mat;
 
-        if (health <= 0)
-            Destroy(gameObject);
+        if (health <= 0) {
+            deathCanvas.SetActive(true);
+            pc.state = EnumPlayerState.DEAD;
+        }
     }
 
     public new void RemoveHealth (int toRemove) {

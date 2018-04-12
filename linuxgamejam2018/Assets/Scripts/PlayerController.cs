@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour {
     GameObject runParticles;
     GameObject burstParticles;
 
-    EnumPlayerState state;
+    public EnumPlayerState state;
     public float range;
 
     // Use this for initialization
