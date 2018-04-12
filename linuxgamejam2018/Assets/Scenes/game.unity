@@ -16370,7 +16370,7 @@ MonoBehaviour:
   health: 5
   maxHealth: 5
   rend: {fileID: 0}
-  damageIndicator: {fileID: 1481182029251704, guid: f541b52c269664f40a3d68bd826ad991,
+  damageIndicator: {fileID: 1211623226150588, guid: 4c747744057f643779f32e14e82182c3,
     type: 2}
   deathCanvas: {fileID: 1424281006}
 --- !u!43 &1320125279
