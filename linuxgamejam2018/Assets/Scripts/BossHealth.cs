@@ -53,6 +53,7 @@ public class BossHealth : Health {
         spawnedIndicator.transform.position = (Vector2)transform.position+Random.insideUnitCircle*2;
 
         yield return new WaitForSeconds(5f);
+        GameManager.manager.Win();
         Destroy(gameObject);
         yield break;
     }
