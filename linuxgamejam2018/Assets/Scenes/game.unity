@@ -12937,9 +12937,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
-  maxHealth: 10
+  maxHealth: 7
   rend: {fileID: 0}
-  damageIndicator: {fileID: 1481182029251704, guid: f541b52c269664f40a3d68bd826ad991,
+  damageIndicator: {fileID: 1719967651001628, guid: 642334dfaee864006833da93108f07f3,
     type: 2}
 --- !u!114 &721700936
 MonoBehaviour:
