@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour {
+public class PlayerHealth : Health {
 
-    public int health;
     public int maxHealth = 5;
 
     public SpriteRenderer rend;
@@ -29,7 +28,7 @@ public class PlayerHealth : MonoBehaviour {
             Destroy(gameObject);
     }
 
-    public void RemoveHealth (int toRemove) {
+    public new void RemoveHealth (int toRemove) {
         health -= toRemove;
         if (health < 0)
             toRemove -= Mathf.Abs(health);
