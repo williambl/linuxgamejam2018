@@ -17833,6 +17833,7 @@ GameObject:
   - component: {fileID: 1319658319}
   - component: {fileID: 1319658317}
   - component: {fileID: 1319658320}
+  - component: {fileID: 1319658321}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -17995,6 +17996,18 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+--- !u!114 &1319658321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1319658314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bb7b72b6bbe74eb39d65595fbff60e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winCanvas: {fileID: 0}
 --- !u!43 &1320125279
 Mesh:
   m_ObjectHideFlags: 0
