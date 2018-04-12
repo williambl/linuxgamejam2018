@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
 
     float terminalVelocity = 6;
     float lateralAcceleration = 5;
-    float lateralTopSpeed = 5;
+    public float lateralTopSpeed = 5;
     float jumpAcceleration = 25;
 
     Rigidbody2D rigid;
