@@ -83,7 +83,10 @@ public class PlayerController : MonoBehaviour {
     void Jump() {
         //Only jump if we're on a surface
         if (canJump) {
-            rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
+            if (state == EnumPlayerState.RUNNING)
+                rigid.AddForce(new Vector2(0, jumpAcceleration*2f), ForceMode2D.Impulse);
+            else
+                rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
             burstParticles.GetComponent<ParticleSystem>().Play();
             canJump = false;
         }
