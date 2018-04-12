@@ -11,6 +11,9 @@ public class EnemyController : MonoBehaviour {
     Rigidbody2D rigid;
     Vector2 edgeOffset;
 
+    float coolDown = 2f;
+    float nextTime = 0f;
+
     //True = right, False = left
     bool direction;
 
@@ -42,6 +45,16 @@ public class EnemyController : MonoBehaviour {
         //Do movement
         rigid.AddForce(new Vector2(createMovementInput()*lateralAcceleration, 0), ForceMode2D.Impulse);
 
+        if (Time.time > nextTime) {
+            foreach (Collider2D coll in Physics2D.OverlapCircleAll(transform.position, 1.5f)) {
+                PlayerHealth h = coll.GetComponent<PlayerHealth>();
+                if (h != null) {
+                    h.RemoveHealth(1);
+                    nextTime = Time.time+coolDown;
+                    break;
+                }
+            }
+        }
     }
 
     float createMovementInput () {

@@ -34,6 +34,11 @@ public class PlayerHealth : Health {
         }
     }
 
+    void OnCollisionEnter2D (Collision2D collision) {
+        if (collision.otherCollider.tag == "Enemy")
+            RemoveHealth(1);
+    }
+
     public new void RemoveHealth (int toRemove) {
         health -= toRemove;
         if (health < 0)
