@@ -12916,8 +12916,8 @@ GameObject:
   - component: {fileID: 721700939}
   - component: {fileID: 721700938}
   - component: {fileID: 721700937}
-  - component: {fileID: 721700935}
   - component: {fileID: 721700936}
+  - component: {fileID: 721700935}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -12933,14 +12933,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 721700934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0da2fa0b88b4f2cbc6c5e712f67a80, type: 3}
+  m_Script: {fileID: 11500000, guid: fa910d2f16f6d42c6b2384fc6db0903a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
+  health: 0
   maxHealth: 7
   rend: {fileID: 0}
   damageIndicator: {fileID: 1719967651001628, guid: 642334dfaee864006833da93108f07f3,
     type: 2}
+  deathIndicator: {fileID: 0}
 --- !u!114 &721700936
 MonoBehaviour:
   m_ObjectHideFlags: 0
