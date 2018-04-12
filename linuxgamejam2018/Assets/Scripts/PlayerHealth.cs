@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : Health {
 
@@ -10,6 +11,7 @@ public class PlayerHealth : Health {
 
     public GameObject damageIndicator;
     public GameObject deathCanvas;
+    public Image healthBar;
     
     PlayerController pc;
 
@@ -32,6 +34,8 @@ public class PlayerHealth : Health {
             deathCanvas.SetActive(true);
             pc.state = EnumPlayerState.DEAD;
         }
+
+        healthBar.rectTransform.sizeDelta = new Vector2(40, 100f*health/maxHealth);
     }
 
     void OnCollisionEnter2D (Collision2D collision) {
