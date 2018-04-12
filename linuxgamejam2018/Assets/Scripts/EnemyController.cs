@@ -48,14 +48,22 @@ public class EnemyController : MonoBehaviour {
         if (direction) {
             if (Physics2D.Raycast((Vector2)transform.position+edgeOffset, Vector2.right, 0.1f))
                 direction = !direction;
-            else
-                return 1f;
+            else {
+                if (!Physics2D.Raycast((Vector2)transform.position+edgeOffset+new Vector2(1f, 0f), Vector2.down, 1.5f))
+                    direction = !direction;
+                else
+                    return 1f;
+            }
 
         } else {
             if (Physics2D.Raycast((Vector2)transform.position-edgeOffset, Vector2.left, 0.1f))
                 direction = !direction;
-            else
-                return -1f;
+            else {
+                if (!Physics2D.Raycast((Vector2)transform.position-edgeOffset-new Vector2(1f, 0f), Vector2.down, 1.5f))
+                    direction = !direction;
+                else
+                    return -1f;
+            }
         }
         return 0;
     }
