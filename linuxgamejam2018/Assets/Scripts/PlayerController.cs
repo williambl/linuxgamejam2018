@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour {
     public EnumPlayerState state;
     public float range;
 
+    public AudioSource jump;
+    public AudioSource land;
+
     // Use this for initialization
     void Start () {
         rigid = GetComponent<Rigidbody2D>();
@@ -88,6 +91,7 @@ public class PlayerController : MonoBehaviour {
             else
                 rigid.AddForce(new Vector2(0, jumpAcceleration), ForceMode2D.Impulse);
             burstParticles.GetComponent<ParticleSystem>().Play();
+            jump.Play();
             canJump = false;
         }
     }
@@ -95,6 +99,7 @@ public class PlayerController : MonoBehaviour {
     void OnCollisionEnter2D (Collision2D collision) 
     {
         burstParticles.GetComponent<ParticleSystem>().Play();
+        land.Play();
         canJump = true;
     }
 
