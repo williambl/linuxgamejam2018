@@ -36,7 +36,7 @@ public class PlayerHealth : Health {
             pc.state = EnumPlayerState.DEAD;
         }
 
-        healthBar.rectTransform.sizeDelta = new Vector2(40, 100f*health/maxHealth);
+        healthBar.rectTransform.sizeDelta = new Vector2(80, 200f*health/maxHealth);
         healthBar.color = healthGradient.Evaluate((float)health/maxHealth);
         pc.lateralTopSpeed = ((float)health/maxHealth)*5;
     }
