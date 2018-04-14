@@ -62,8 +62,6 @@ public class BossController : MonoBehaviour {
                 }
             }
         }
-
-        Debug.Log(direction);
     }
 
     float createMovementInput () {
